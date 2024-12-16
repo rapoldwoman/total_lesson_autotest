@@ -10,7 +10,7 @@ class LoginPage(BasePage):
 
     def should_be_login_url(self):
         assert "/login" in self.url, "Видимо неверный урл"
-
+    
     def should_be_login_form(self):
         assert self.browser.find_element(*LoginPageLocators.LOGIN_FORM), "Логин формы нет"
 
