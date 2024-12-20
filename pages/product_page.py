@@ -28,8 +28,7 @@ class ProductPage(BasePage):
     def should_price_in_basket(self):
         price = self.browser.find_element(*ProductPageLocators.PRICE_PRODUCT).text
         assert price == self.browser.find_element(*ProductPageLocators.PRICE_PRODUCT).text, "Сумма в корзине отличается"
-        return print("Цена учтена в корзине")
 
     def should_name_product_in_notification(self):
         name_product = self.browser.find_element(*ProductPageLocators.NAME_PRODUCT).text
-        assert name_product in self.browser.find_element(*ProductPageLocators.ALERTINNER).text, "Название добавлено не то"
+        assert name_product == self.browser.find_element(*ProductPageLocators.NAME_IN_ALERTINNER).text, "Название добавлено не то"
