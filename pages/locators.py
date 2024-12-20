@@ -24,3 +24,4 @@ class ProductPageLocators():
     MASSAGES_PRODUCT = (By.CSS_SELECTOR, "#massage")
     PRICE_PRODUCT = (By.CSS_SELECTOR, ".price_color")
     PRICE_BASKET = (By.CSS_SELECTOR, ".basket-mini")
+    NAME_IN_ALERTINNER = (By.CSS_SELECTOR, "div.alertinner strong")
