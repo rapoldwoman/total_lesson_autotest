@@ -43,7 +43,6 @@ def test_should_name_product_in_notification(browser,url):
     page.add_product_in_basket()
     page.should_name_product_in_notification()
 
-@pytest.mark.test
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     print("Негатив, Проверка, что нет success massage после добавления в корзину")
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
@@ -52,7 +51,6 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page.add_product_in_basket()
     page.should_not_be_success_message()
 
-@pytest.mark.test
 def test_guest_cant_see_success_message(browser):
     print("Негатив, Проверка, что гость не видит success message на странице товара")
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
@@ -60,7 +58,6 @@ def test_guest_cant_see_success_message(browser):
     page.open()
     page.should_not_be_success_message()
 
-@pytest.mark.test
 def test_message_disappeared_after_adding_product_to_basket(browser):
     print("Негатив, Проверка, что сообщение пропадает после добавление в корзину")
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
@@ -68,3 +65,18 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.open()
     page.add_product_in_basket()
     page.should_message_disappeared()
+
+def test_guest_should_be_login_link(browser):
+    print("Проверяем, что ссылка на логинстраницу есть")
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_be_login_link()
+
+@pytest.mark.test
+def test_guest_can_go_to_login_page_from_product_page(browser):
+    print("Проверяем, что можно перейти на логинстраницу")
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.go_to_login_page()
