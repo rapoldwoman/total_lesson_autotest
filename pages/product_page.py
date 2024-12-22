@@ -1,3 +1,5 @@
+import time
+
 from .base_page import BasePage
 from .locators import ProductPageLocators
 from selenium.webdriver.common.by import By
@@ -34,4 +36,7 @@ class ProductPage(BasePage):
         assert name_product == self.browser.find_element(*ProductPageLocators.NAME_IN_ALERTINNER).text, "Название добавлено не то"
 
     def should_not_be_success_message(self):
-        assert self.is_not_element_present(*ProductPageLocators.MASSAGES_PRODUCT), "Success message is presented, but should not be"
+        assert self.is_not_element_present(*ProductPageLocators.MASSAGES_PRODUCT), "Success message is presented"
+
+    def should_message_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.MASSAGES_PRODUCT), "Success message NOT disappeared"

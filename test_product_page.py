@@ -1,3 +1,4 @@
+import time
 import pytest
 from .pages.product_page import ProductPage
 
@@ -42,18 +43,28 @@ def test_should_name_product_in_notification(browser,url):
     page.add_product_in_basket()
     page.should_name_product_in_notification()
 
-def test_should_not_be_success_message(browser):
-    print("Проверка, что на странице нет success massage")
-    link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+@pytest.mark.test
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    print("Негатив, Проверка, что нет success massage после добавления в корзину")
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.add_product_in_basket()
+    page.should_not_be_success_message()
+
+@pytest.mark.test
+def test_guest_cant_see_success_message(browser):
+    print("Негатив, Проверка, что гость не видит success message на странице товара")
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
     page = ProductPage(browser, link)
     page.open()
     page.should_not_be_success_message()
 
 @pytest.mark.test
-def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
-    print("Проверка, что мы видим success massage после добавления в корзину")
-    link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    print("Негатив, Проверка, что сообщение пропадает после добавление в корзину")
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
     page = ProductPage(browser, link)
     page.open()
     page.add_product_in_basket()
-    page.should_not_be_success_message()
+    page.should_message_disappeared()

@@ -19,7 +19,6 @@ def browser(request):
     else:
         raise Exception("Выбери язык")
 
-    browser.implicitly_wait(10)
     yield browser
     print("\nend browser test..")
     browser.quit()
