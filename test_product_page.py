@@ -1,8 +1,6 @@
 import pytest
-
-from .pages.main_page import MainPage
 from .pages.product_page import ProductPage
-import time
+
 
 def test_should_be_product_url(browser):
     print("Проверка, что находимся на странице продукта:")
@@ -26,7 +24,6 @@ def test_should_price_product_in_basket(browser):
     page.add_product_in_basket()
     page.should_price_in_basket()
 
-@pytest.mark.test
 @pytest.mark.parametrize('url', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",
@@ -44,3 +41,19 @@ def test_should_name_product_in_notification(browser,url):
     page.open()
     page.add_product_in_basket()
     page.should_name_product_in_notification()
+
+def test_should_not_be_success_message(browser):
+    print("Проверка, что на странице нет success massage")
+    link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_not_be_success_message()
+
+@pytest.mark.test
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    print("Проверка, что мы видим success massage после добавления в корзину")
+    link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+    page = ProductPage(browser, link)
+    page.open()
+    page.add_product_in_basket()
+    page.should_not_be_success_message()

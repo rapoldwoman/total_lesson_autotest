@@ -32,3 +32,6 @@ class ProductPage(BasePage):
     def should_name_product_in_notification(self):
         name_product = self.browser.find_element(*ProductPageLocators.NAME_PRODUCT).text
         assert name_product == self.browser.find_element(*ProductPageLocators.NAME_IN_ALERTINNER).text, "Название добавлено не то"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.MASSAGES_PRODUCT), "Success message is presented, but should not be"
