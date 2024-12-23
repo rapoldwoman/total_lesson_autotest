@@ -73,7 +73,6 @@ def test_guest_should_be_login_link(browser):
     page.open()
     page.should_be_login_link()
 
-@pytest.mark.test
 def test_guest_can_go_to_login_page_from_product_page(browser):
     print("Проверяем, что можно перейти на логинстраницу")
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"

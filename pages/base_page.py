@@ -6,6 +6,7 @@ from selenium.common.exceptions import TimeoutException
 from .locators import BasePageLocators
 
 
+
 class BasePage:
     def __init__(self, browser, url):
         self.browser = browser
@@ -50,3 +51,8 @@ class BasePage:
             return False
 
         return True
+
+    def go_to_basket_page(self):
+        link = self.browser.find_element(*BasePageLocators.BASKET_LINK)
+        link.click()
+
