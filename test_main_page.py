@@ -18,9 +18,8 @@ def test_guest_should_see_login_link(browser):
     page.open()
     page.should_be_login_link()
 
-@pytest.mark.test
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
-    print("Проверяем, что при переходе в корзину - корзина пустая")
+    print("Проверяем, что при переходе в корзину из main_page - корзина пустая")
     link = "http://selenium1py.pythonanywhere.com/"
     page = MainPage(browser, link)
     page.open()
