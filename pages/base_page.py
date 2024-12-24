@@ -1,3 +1,5 @@
+from idlelib.debugobj_r import remote_object_tree_item
+
 from selenium.common.exceptions import NoAlertPresentException
 import math
 from selenium.webdriver.support import expected_conditions as EC
@@ -36,6 +38,14 @@ class BasePage:
         except NoAlertPresentException:
             print("No second alert presented")
 
+    def is_element_present(self, how, what, timeout=5):
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+
+        return True
+
     def is_not_element_present(self, how, what, timeout=20):
         try:
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
@@ -55,4 +65,7 @@ class BasePage:
     def go_to_basket_page(self):
         link = self.browser.find_element(*BasePageLocators.BASKET_LINK)
         link.click()
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented, no unauthorised"
 

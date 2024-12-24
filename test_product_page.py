@@ -11,13 +11,6 @@ def test_should_be_product_url(browser):
     page.open()
     page.should_be_product_url()
 
-def test_add_product_to_basket(browser):
-    print("Проверка добавления продукта в корзину")
-    link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/?promo=newYear"
-    page = ProductPage(browser, link)
-    page.open()
-    page.add_product_in_basket()
-
 def test_should_price_product_in_basket(browser):
     print("Проверка, что цена продукта добавлена в корзину")
     link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/?promo=newYear"
@@ -52,13 +45,6 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page.add_product_in_basket()
     page.should_not_be_success_message()
 
-def test_guest_cant_see_success_message(browser):
-    print("Негатив, Проверка, что гость не видит success message на странице товара")
-    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-    page = ProductPage(browser, link)
-    page.open()
-    page.should_not_be_success_message()
-
 def test_message_disappeared_after_adding_product_to_basket(browser):
     print("Негатив, Проверка, что сообщение пропадает после добавление в корзину")
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
@@ -90,3 +76,18 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page.go_to_basket_page()
     basket_page = BasketPage(browser,browser.current_url)
     basket_page.should_basket_is_empty()
+
+class TestUserAddToBasketFromProductPage():
+    def test_user_cant_see_success_message(self,browser):
+        print("Негатив, Проверка, что гость не видит success message на странице товара")
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_not_be_success_message()
+
+    def test_user_add_product_to_basket(self, browser):
+        print("Проверка добавления продукта в корзину")
+        link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+        page = ProductPage(browser, link)
+        page.open()
+        page.add_product_in_basket()
