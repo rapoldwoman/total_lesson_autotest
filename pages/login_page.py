@@ -20,10 +20,10 @@ class LoginPage(BasePage):
 
     def register_new_user(self):
         f = faker.Faker()
+        pas = f.password()
+        mail = f.email()
         input_email = self.browser.find_element(*LoginPageLocators.REGISTER_INPUT_EMAIL)
-        input_email.send_keys(f.email())
-        input_password = self.browser.find_element(*LoginPageLocators.REGISTER_INPUT_PASSWORD1).send_keys(f.password())
-        input_password2 = self.browser.find_element(*LoginPageLocators.REGISTER_INPUT_PASSWORD2)
-        input_password2.send_keys(input_password)
-        button = self.browser.find_element(*LoginPageLocators.BUTTON_REGISTER)
-        button.click()
+        input_email.send_keys(mail)
+        input_password = self.browser.find_element(*LoginPageLocators.REGISTER_INPUT_PASSWORD1).send_keys(pas)
+        input_password2 = self.browser.find_element(*LoginPageLocators.REGISTER_INPUT_PASSWORD2).send_keys(pas)
+        button = self.browser.find_element(*LoginPageLocators.BUTTON_REGISTER).click()
